@@ -20,6 +20,7 @@ def get_b_bucket(bucket_a, data_bank):
 
 
 def compare(bucket_a, bucket_b):
+    """compare and returns which bucket has more followers"""
     if bucket_a["follower_count"] > bucket_b["follower_count"]:
         return bucket_a
     else:
@@ -27,13 +28,14 @@ def compare(bucket_a, bucket_b):
 
 
 def display_choices(bucket_a, bucket_b):
-
+    """Displays Bucket A and Bucket B for user to choose/guess. """
     print(f"Compare A: {bucket_a["name"]}, {bucket_a["description"]}, from {bucket_a["country"]}")
     print(vs)
     print(f"Against B: {bucket_b["name"]}, {bucket_b["description"]}, from {bucket_b["country"]}")
 
 
 def user_guess_check(user_choice, winner_bucket, current_score):
+    """Checks if user guess right or wrong. Returns a boolean for game_over loop, and the current score"""
     if user_choice == winner_bucket:
         clear()
         current_score += 1
@@ -58,6 +60,7 @@ while not game_over:
 
     display_choices(a_bucket, b_bucket)
 
+    # Assigns a bucket data to user_guess
     user_guess = input("Who has more followers? Type 'A' or 'B': ").upper()
     if user_guess == "A":
         user_guess = a_bucket
@@ -69,5 +72,6 @@ while not game_over:
     game_over, score = user_guess_check(user_guess, current_bucket_winner, score)
 
     if not game_over:
+        # a_bucket will receive b_bucket's data while b_bucket will have a new data
         a_bucket = b_bucket
         b_bucket = get_b_bucket(a_bucket, data)
