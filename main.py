@@ -6,11 +6,13 @@ from game_data import data
 
 
 def choose_data(data_bank):
+    """gets a random data from game_data """
     chosen_data = random.choice(data_bank)
     return chosen_data
 
 
 def get_b_bucket(bucket_a, data_bank):
+    """gets data specifically for b_bucket and making sure it doesn't match bucket_a data"""
     bucket_b = choose_data(data_bank)
     while bucket_b == bucket_a:
         bucket_b = choose_data(data_bank)
