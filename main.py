@@ -54,8 +54,8 @@ play_again = True
 while play_again:
 
     score = 0
-    a_bucket = choose_data(data)
-    b_bucket = get_b_bucket(a_bucket, data)
+    a_bucket = choose_data(data)  # gets item in the data bank and assign it to bucket A
+    b_bucket = get_b_bucket(a_bucket, data)  # get item in the data bank and assign it to bucket B
     game_over = False
 
     print(logo)
