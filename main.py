@@ -49,29 +49,36 @@ def user_guess_check(user_choice, winner_bucket, current_score):
         return True, current_score
 
 
-score = 0
-a_bucket = choose_data(data)
-b_bucket = get_b_bucket(a_bucket, data)
-game_over = False
+play_again = True
 
-print(logo)
+while play_again:
 
-while not game_over:
+    score = 0
+    a_bucket = choose_data(data)
+    b_bucket = get_b_bucket(a_bucket, data)
+    game_over = False
 
-    display_choices(a_bucket, b_bucket)
+    print(logo)
 
-    # Assigns a bucket data to user_guess
-    user_guess = input("Who has more followers? Type 'A' or 'B': ").upper()
-    if user_guess == "A":
-        user_guess = a_bucket
-    elif user_guess == "B":
-        user_guess = b_bucket
+    while not game_over:
 
-    current_bucket_winner = compare(a_bucket, b_bucket)
+        display_choices(a_bucket, b_bucket)
 
-    game_over, score = user_guess_check(user_guess, current_bucket_winner, score)
+        # Assigns a bucket data to user_guess
+        user_guess = input("Who has more followers? Type 'A' or 'B': ").upper()
+        if user_guess == "A":
+            user_guess = a_bucket
+        elif user_guess == "B":
+            user_guess = b_bucket
 
-    if not game_over:
-        # a_bucket will receive b_bucket's data while b_bucket will have a new data
-        a_bucket = b_bucket
-        b_bucket = get_b_bucket(a_bucket, data)
+        current_bucket_winner = compare(a_bucket, b_bucket)
+
+        game_over, score = user_guess_check(user_guess, current_bucket_winner, score)
+
+        if not game_over:
+            # a_bucket will receive b_bucket's data while b_bucket will have a new data
+            a_bucket = b_bucket
+            b_bucket = get_b_bucket(a_bucket, data)
+
+    if input("Do you want to play again? Type 'y' for Yes and 'n' for No: ").lower() == "n":
+        play_again = False
