@@ -80,5 +80,6 @@ while play_again:
             a_bucket = b_bucket
             b_bucket = get_b_bucket(a_bucket, data)
 
+    # Ask the user if they want to play again
     if input("Do you want to play again? Type 'y' for Yes and 'n' for No: ").lower() == "n":
         play_again = False
